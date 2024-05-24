@@ -15,7 +15,7 @@ try {
                 
     $resultat = $connexion->query($requete);
     echo "<table>\n";
-    echo "<tr><th>Nom client /th>
+    echo "<tr><th>Nom client  </th>
             <th>prénom</th>
             <th>type</th>
          </tr>";

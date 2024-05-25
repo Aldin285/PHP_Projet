@@ -83,7 +83,7 @@ button:hover {
 
 .context{
     /* display: grid; */
-    color: orange;
+    color: rgb(210, 114, 225);
     border: 1px solid;
     border-color: firebrick;
     /* grid-template-columns: 150px 100px 50px;
@@ -129,7 +129,7 @@ button:hover {
     grid-column: 3 ;
     border: 2px solid;
     border-color: rgb(110, 212, 36);
-    background-color:rgba(135, 72, 38, 0.3);
+    background-color:rgb(250, 187, 154,0.3);
     /* padding: 50px; */
     text-align: center;
     width:fit-content;
@@ -153,7 +153,7 @@ button:hover {
 }
 
 h1{
-    line-height: 0.5;
+    line-height: 0.8;
 }
 
 .image-grid{

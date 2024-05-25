@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head><title> page1 </title></head>
+    <head>
+        <title> page1 </title>
+    </head>
         <body>
         <form action="voiture_affichage.php" method="post">
         
-        <label for="modele-select">service:</label>
+        <label for="modele-select">choix modele:</label>
         <select name="modele" size="1" id="modele-select">
         <?php
             try {
@@ -26,7 +28,7 @@
 
 
         <!-- Validation -->
-        <br/>
+        <br/><br/>
         <input type="submit" value="Valider"/>
         
         </form>

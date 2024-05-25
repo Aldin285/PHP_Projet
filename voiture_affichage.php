@@ -39,7 +39,6 @@
 
         $modele=$_POST["modele"];
         try {
-
             $connexion= new PDO('mysql:host=localhost;dbname=locautoV2','root','',);
             $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
                         FROM voiture AS v
@@ -64,6 +63,11 @@
                 echo "\t\t\t <p1>marque:".$ligne["nom_marque"]."</p1>";
                 echo "\t\t  </div> \n\n";
             }
+
+            if  (($ligne = $resultat->fetch())== null){
+                echo "aucun resultat";
+            }
+
             echo "\t</div> \n";
 
             } 
@@ -72,6 +76,7 @@
             die();
 
         }
+        
     ?> 
 
 

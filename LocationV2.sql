@@ -52,6 +52,8 @@ CREATE TABLE `Client` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `adresse` varchar(100) NOT NULL,
+  `adresse_mail` varchar(100)NOT null,
+  `mot_de_pass` varchar (100) not null,
   `id_type_de_client` int(11) NOT NULL,
   PRIMARY KEY (`id_client`),
   KEY `Client_Type_de_client_FK` (`id_type_de_client`),
@@ -65,7 +67,11 @@ CREATE TABLE `Client` (
 
 LOCK TABLES `Client` WRITE;
 /*!40000 ALTER TABLE `Client` DISABLE KEYS */;
-INSERT INTO `Client` VALUES (1,'malkovitch','john','paradise street',1),(2,'smith','bill','hell. city',2),(3,'murray','bill','les fleurs du mal',3),(4,'nature','gwendal','rennes',1);
+INSERT INTO `Client` VALUES 
+(1,'malkovitch','john','paradise street','john@gmail.com','1254',1),
+(2,'smith','bill','hell. city','Sbill@gmail.com','5454',2),
+(3,'murray','bill','les fleurs du mal','Mbill@gmail.com','5454',3),
+(4,'nature','gwendal','rennes','gwendal@gmail.com','5454',1);
 /*!40000 ALTER TABLE `Client` ENABLE KEYS */;
 UNLOCK TABLES;
 

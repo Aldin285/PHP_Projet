@@ -36,11 +36,17 @@
 
 
     <?php
+
+        $modele=$_POST["modele"];
         try {
 
             $connexion= new PDO('mysql:host=localhost;dbname=locautoV2','root','',);
-            $requete = 'SELECT image,libelle
-                        FROM modele';
+            $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                        FROM voiture AS v
+                        NATURAL JOIN modele m
+                        JOIN categorie c ON m.id_categorie = c.id_categorie
+                        JOIN marque ma ON m.id_marque = ma.id_marque
+                        WHERE id_modele='.$modele;
                         
             $resultat = $connexion->query($requete);
 
@@ -52,6 +58,10 @@
 
                 echo "\t\t<div class='item1-1'>\n\n";
                 echo "\t\t\t <h1>".$ligne["libelle"]."</h1>\n\n\n";
+                echo "\t\t\t <p1>matricule:".$ligne["immatriculation"]."</p1>";
+                echo "\t\t\t <p1>catégorie:".$ligne["nom_categorie"]."</p1>";
+                echo "\t\t\t <p1>modele:".$ligne["libelle"]."</p1>";
+                echo "\t\t\t <p1>marque:".$ligne["nom_marque"]."</p1>";
                 echo "\t\t  </div> \n\n";
             }
             echo "\t</div> \n";

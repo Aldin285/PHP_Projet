@@ -128,16 +128,15 @@ button:hover {
 .item1-1{
     grid-column: 3 ;
     border: 2px solid;
-    border-color: rgb(70, 18, 167);
-    background-color:rgb(250, 187, 154,0.3);
+    border-color: rgb(110, 212, 36);
+    background-color:rgba(135, 72, 38, 0.3);
     /* padding: 50px; */
     text-align: center;
     width:fit-content;
     max-width: 100%;
     height: auto;
     display: grid;
-    align-items: center;
-    justify-content: center;
+    justify-items: start;
     
 
 } 

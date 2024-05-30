@@ -63,9 +63,10 @@
                 echo "\t\t\t <p1>marque:".$ligne["nom_marque"]."</p1>";
                 echo "\t\t  </div> \n\n";
             }
+            
 
-            if  (($ligne = $resultat->fetch())== null){
-                echo "aucun resultat";
+            if  ($ligne==null){
+                echo "aucun resultats";
             }
 
             echo "\t</div> \n";

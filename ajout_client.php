@@ -1,7 +1,7 @@
 // FormEmploye.php
 <!DOCTYPE html>
 <html>
-    <head><title>Saisie</title></head>
+    <head><title>Nouveau User</title></head>
         <body>
             <form action="s'enregistré.php" method=get>
             <h2>Saisie d'un client</h2>

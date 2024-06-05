@@ -4,7 +4,7 @@ session_start();
 // connexion à un compte:
 <!DOCTYPE html>
 <html>
-    <head><title>Connexion</title></head>
+    <head><title>Connexion compte</title></head>
         <body>
             <form action="se_connecter2.php" method=get>
             <h2>CONNEXION</h2>

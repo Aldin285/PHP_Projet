@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Profil user_error</title></head>
+<head><title>Profil user Modification</title></head>
     <body>
     <form action="Profil_User_Update.php" method=get>
     <h2>modification profil client</h2>

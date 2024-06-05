@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> page1 </title>
+        <title> Choix Marque Categorie </title>
     </head>
         <body>
         <form action="voiture_affichage.php" method="get">

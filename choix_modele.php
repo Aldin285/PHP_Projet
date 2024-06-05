@@ -45,6 +45,7 @@ a{
   background-color: #f1f1f1;
 }
 </style>
+<title>Choix Modele</title>
 </head>
 <body>
 

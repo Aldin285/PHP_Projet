@@ -109,14 +109,17 @@
                 echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
                 echo "\t\t  </div> \n\n";
             }
-            
-           if (!isset($ligne)){
+
+            echo "\t</div> \n";
+
+            // si aucun résultat
+           if (!isset($ligne["modele"])){
                  echo "Aucun résultat :(";
             }
 
             
 
-            echo "\t</div> \n";
+            
 
             } 
         catch (PDOException $e) {

@@ -54,11 +54,12 @@
                     $_SESSION['id_client'] = $id_client;
                     $_SESSION['nom_client'] = $nom;
                     $_SESSION['prenom_client'] = $prenom;
+                    $_SESSION['password_client']=$mot_de_pass;
 
                     //test:
                     // echo 'Welcome back, ' .$nom.' '.$prenom.'!';
 
-                    header('Location: Accueil.html ');
+                    header('Location: Accueil.html');
                 } else {
                     // Incorrect password
                     echo 'Incorrect  password!';

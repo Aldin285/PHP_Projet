@@ -29,7 +29,7 @@
             exit('Please fill both the username and password fields!');
         }
         // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-        if ($stmt = $con->prepare('SELECT id_client, mot_de_pass,nom, prenom FROM client WHERE adresse_mail= ?')) {
+        if ($stmt = $con->prepare('SELECT id_client, mot_de_pass,nom, prenom,adresse FROM client WHERE adresse_mail= ?')) {
 
             // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
             $stmt->bind_param('s', $_GET['mail']);
@@ -41,7 +41,7 @@
             //les utiliser apres en tant que variable avec les valeurs qui leurs sont atriuées dans le code SQL
             //Pour utiliser les attributs, il faut les écrire  
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id_client, $mot_de_pass,$nom,$prenom);
+                $stmt->bind_result($id_client, $mot_de_pass,$nom,$prenom,$adresse);
                 $stmt->fetch();
                 // Account exists, now we verify the password.
                 // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -55,6 +55,7 @@
                     $_SESSION['nom_client'] = $nom;
                     $_SESSION['prenom_client'] = $prenom;
                     $_SESSION['password_client']=$mot_de_pass;
+                    $_SESSION['adresse_client']=$adresse;
 
                     //test:
                     // echo 'Welcome back, ' .$nom.' '.$prenom.'!';

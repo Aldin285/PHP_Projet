@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<head><title>Ajout d'un client</title></head>
+<head><title>Enregistrer Client</title></head>
     <body>
         <?php
         // variables passées par le formulaire

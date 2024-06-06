@@ -9,67 +9,117 @@
     <link  href="voiture_affichage.css" media="all" rel="stylesheet" type="text/css" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<style>
-
-    /* html{
-        background: url(valorant\ wallpaper.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
-</style>
 <body> 
-    <!-- <div class="text">
-        <span1 class="item1">
-            <img src="images/bmw-3.jpg" class="image-grid">
-        </span1>
-        <div class="item1-1">
-            <h1> BMW</h1>
-            <p1 class="p1">
-                <p>klk</p>
-                <p>fdf</p>
-                <p>gfhgfh</p>
-            </p1>
-        </div>
-    </div> -->
-
-
     <?php
 
-        $modele=$_POST["modele"];
+        //j'ai utilisé id_modele dans deux sites différent
+        // l'identifiant avait des noms différents. Pour utiliser la meme variable,
+        //j'ai utilisé isset() afin que la variable $modele prend le bon GET
+        //en se basant sur le nom utilsé. (le site renvoie une erreur si le GET renvoie à rien)
+        if ( isset($_GET['modele']) ) {
+          $modele=$_GET["modele"];
+        }elseif(isset($_GET['id_modele'])){
+          $modele=$_GET["id_modele"];  
+        }
+
+        
         try {
             $connexion= new PDO('mysql:host=localhost;dbname=locautoV2','root','',);
-            $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+
+            //Affiche les voitures qui appartiennent à la categorie séléctioné
+            if (isset($_GET["categorie"],$_GET["marque"]) && ( $_GET["categorie"]!=="" && $_GET["marque"]=="")){
+                 $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                        FROM voiture AS v
+                        NATURAL JOIN modele m
+                        JOIN categorie c ON m.id_categorie = c.id_categorie
+                        JOIN marque ma ON m.id_marque = ma.id_marque
+                        WHERE c.id_categorie="'.$_GET["categorie"].'"';
+            }
+            //Affiche les voitures qui appartiennent à la marque séléctionée
+            elseif (isset($_GET["categorie"],$_GET["marque"]) &&($_GET["marque"]!=="" && $_GET["categorie"]=="")){
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                        FROM voiture AS v
+                        NATURAL JOIN modele m
+                        JOIN categorie c ON m.id_categorie = c.id_categorie
+                        JOIN marque ma ON m.id_marque = ma.id_marque
+                        WHERE ma.id_marque='.$_GET["marque"];
+            }
+            //Affiche les voitures qui appartiennent à la marque et à la catégorie séléctionée
+            elseif(isset($_GET["categorie"],$_GET["marque"]) && ($_GET["marque"]!=="" && $_GET["categorie"]!=="")){
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                        FROM voiture AS v
+                        NATURAL JOIN modele m
+                        JOIN categorie c ON m.id_categorie = c.id_categorie
+                        JOIN marque ma ON m.id_marque = ma.id_marque
+                        WHERE ma.id_marque='.$_GET["marque"].' AND c.id_categorie="'.$_GET["categorie"].'"';
+            }
+            //Affiche les voitures qui appartiennent au modele séléctioné
+            elseif(isset($modele)){
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
                         WHERE id_modele='.$modele;
-                        
+            }
+            //Affiche toutes les voitures quand aucune option est séléctionée
+            else{
+                    $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                            FROM voiture AS v
+                            NATURAL JOIN modele m
+                            JOIN categorie c ON m.id_categorie = c.id_categorie
+                            JOIN marque ma ON m.id_marque = ma.id_marque
+                            ORDER BY m.libelle';
+                }
+           
+            //si aucunn résultat est retourné
             $resultat = $connexion->query($requete);
-
+            $ligne = $resultat->fetch();
+            
+            //si on a des résultats
             echo "<div class='text'>\n";
-            while ($ligne = $resultat->fetch()) {
+
+            if (isset($ligne["immatriculation"])){
                 echo "\t\t<span1 class='item1'\n\n>";    
                 echo "\t\t\t<img src='images/".$ligne["image"]."' class='image-grid'>\n\n\n";
                 echo "\t\t</span1>\n\n";
 
                 echo "\t\t<div class='item1-1'>\n\n";
                 echo "\t\t\t <h1>".$ligne["libelle"]."</h1>\n\n\n";
-                echo "\t\t\t <p1>matricule:".$ligne["immatriculation"]."</p1>";
-                echo "\t\t\t <p1>catégorie:".$ligne["nom_categorie"]."</p1>";
-                echo "\t\t\t <p1>modele:".$ligne["libelle"]."</p1>";
-                echo "\t\t\t <p1>marque:".$ligne["nom_marque"]."</p1>";
+                echo "\t\t\t <p1>Matricule: ".$ligne["immatriculation"]."</p1>";
+                echo "\t\t\t <p1>Catégorie: ".$ligne["nom_categorie"]."</p1>";
+                echo "\t\t\t <p1>Modele: ".$ligne["libelle"]."</p1>";
+                echo "\t\t\t <p1>Compteur: ".$ligne["compteur"]." KM</p1>";
+                echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
                 echo "\t\t  </div> \n\n";
-            }
-            
+           }
 
-            if  ($ligne==null){
-                echo "aucun resultats";
+            while ($ligne = $resultat->fetch()) {
+                
+                echo "\t\t<span1 class='item1'\n\n>";    
+                echo "\t\t\t<img src='images/".$ligne["image"]."' class='image-grid'>\n\n\n";
+                echo "\t\t</span1>\n\n";
+
+                echo "\t\t<div class='item1-1'>\n\n";
+                echo "\t\t\t <h1>".$ligne["libelle"]."</h1>\n\n\n";
+                echo "\t\t\t <p1>Matricule: ".$ligne["immatriculation"]."</p1>";
+                echo "\t\t\t <p1>Catégorie: ".$ligne["nom_categorie"]."</p1>";
+                echo "\t\t\t <p1>Modele: ".$ligne["libelle"]."</p1>";
+                echo "\t\t\t <p1>Compteur: ".$ligne["compteur"]." KM</p1>";
+                echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
+                echo "\t\t  </div> \n\n";
             }
 
             echo "\t</div> \n";
+
+            // si aucun résultat
+           if (!isset($ligne["modele"])){
+                 echo "Aucun résultat :(";
+            }
+
+            
+
+            
 
             } 
         catch (PDOException $e) {

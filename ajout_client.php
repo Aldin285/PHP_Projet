@@ -1,7 +1,11 @@
 // FormEmploye.php
 <!DOCTYPE html>
 <html>
-    <head><title>Nouveau User</title></head>
+    <head>
+        <title>Nouveau User</title>
+        <link rel="stylesheet" href="css/style_log.css">
+
+    </head>
         <body>
             <form action="s'enregistré.php" method=get>
             <h2>Saisie d'un client</h2>

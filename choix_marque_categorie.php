@@ -73,7 +73,9 @@
 
         <!-- Validation -->
         <br/><br/>
+        <a href="voiture_affichage.php" >
         <input type="submit" value="Valider"/>
+        </a>
         
         </form>
     </body>

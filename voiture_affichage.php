@@ -10,8 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body> 
+    <form action="voiture_location.php" method="get">
     <?php
-
+        
+       
         //j'ai utilisé id_modele dans deux sites différent
         // l'identifiant avait des noms différents. Pour utiliser la meme variable,
         //j'ai utilisé isset() afin que la variable $modele prend le bon GET
@@ -28,7 +30,7 @@
 
             //Affiche les voitures qui appartiennent à la categorie séléctioné
             if (isset($_GET["categorie"],$_GET["marque"]) && ( $_GET["categorie"]!=="" && $_GET["marque"]=="")){
-                 $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                 $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -37,7 +39,7 @@
             }
             //Affiche les voitures qui appartiennent à la marque séléctionée
             elseif (isset($_GET["categorie"],$_GET["marque"]) &&($_GET["marque"]!=="" && $_GET["categorie"]=="")){
-                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -46,7 +48,7 @@
             }
             //Affiche les voitures qui appartiennent à la marque et à la catégorie séléctionée
             elseif(isset($_GET["categorie"],$_GET["marque"]) && ($_GET["marque"]!=="" && $_GET["categorie"]!=="")){
-                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -55,7 +57,7 @@
             }
             //Affiche les voitures qui appartiennent au modele séléctioné
             elseif(isset($modele)){
-                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -64,12 +66,12 @@
             }
             //Affiche toutes les voitures quand aucune option est séléctionée
             else{
-                    $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie
-                            FROM voiture AS v
-                            NATURAL JOIN modele m
-                            JOIN categorie c ON m.id_categorie = c.id_categorie
-                            JOIN marque ma ON m.id_marque = ma.id_marque
-                            ORDER BY m.libelle';
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
+                        FROM voiture AS v
+                        NATURAL JOIN modele m
+                        JOIN categorie c ON m.id_categorie = c.id_categorie
+                        JOIN marque ma ON m.id_marque = ma.id_marque
+                        ORDER BY m.libelle';
                 }
            
             //si aucunn résultat est retourné
@@ -77,6 +79,8 @@
             $ligne = $resultat->fetch();
             
             //si on a des résultats
+            // j'ai mis le if puis le while car il n'affichait pas le premier résultat avec le while
+            // alors le if affiche le premier et le while affiche le reste
             echo "<div class='text'>\n";
 
             if (isset($ligne["immatriculation"])){
@@ -91,8 +95,11 @@
                 echo "\t\t\t <p1>Modele: ".$ligne["libelle"]."</p1>";
                 echo "\t\t\t <p1>Compteur: ".$ligne["compteur"]." KM</p1>";
                 echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
+                echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture'>Voir l'offre</button> </a>";
                 echo "\t\t  </div> \n\n";
-           }
+           }elseif (!isset($ligne["immatriculation"])){
+            echo "Aucun résultat :(";
+       }
 
             while ($ligne = $resultat->fetch()) {
                 
@@ -107,21 +114,16 @@
                 echo "\t\t\t <p1>Modele: ".$ligne["libelle"]."</p1>";
                 echo "\t\t\t <p1>Compteur: ".$ligne["compteur"]." KM</p1>";
                 echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
+                echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture'>Voir l'offre</button> </a>";
                 echo "\t\t  </div> \n\n";
             }
 
             echo "\t</div> \n";
 
             // si aucun résultat
-           if (!isset($ligne["modele"])){
-                 echo "Aucun résultat :(";
-            }
+           
 
-            
-
-            
-
-            } 
+        } 
         catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage() . "<br/>";
             die();
@@ -130,9 +132,6 @@
         
     ?> 
 
-
-    
-    
-
+    </form>
 </body>
 </html>

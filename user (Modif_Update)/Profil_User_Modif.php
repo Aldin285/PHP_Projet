@@ -9,7 +9,7 @@
     Prenom :<input type="text" name="prenom_user_modif" size="25" value= <?php  echo ''.$_SESSION['prenom_client'].''?> ><br/><br/>
     Adresse :<input type="text" name="adresse_user_modif" size="35" value= <?php  echo ''.$_SESSION['adresse_client'].''?> ><br/><br/>
     Adresse_mail :<input type="text" name="mail_user_modif" size="30" value= <?php  echo ''.$_SESSION['mail'].''?> ><br/><br/>
-    Mot de passe :<input type="text" name="password_user_modif" size="30" minlength="8" value= <?php  echo ''.$_SESSION['password_client'].''?> ><br/><br/>
+    Nouveau Mot de passe :<input type="text" name="password_user_modif" size="30" minlength="8" ><br/><br/>
     
     <input type="submit" value="Valider">
        

@@ -22,7 +22,8 @@
             $resultat = $connexion->query($requete);
             $ligne = $resultat->fetch();
             // l'insertion s'est bien passée => retourner l'info à l'user
-            echo "Vous avez été ajouté avec succés !";
+            echo "Vous avez été ajouté avec succés ! ";
+            echo "<br/><a href='se_connecter.php' > <input type='submit' value='OK'> </a>";
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage() . "<br/>";
             die();

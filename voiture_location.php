@@ -14,7 +14,7 @@
 
     try {
         $connexion= new PDO('mysql:host=localhost;dbname=locautov2','root','',);
-        $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
+        $requete_location = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
                     FROM voiture AS v
                     NATURAL JOIN modele m
                     JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -22,8 +22,8 @@
                     WHERE id_voiture='.$_GET["voiture"];
 
         // info voiture
-        $resultat = $connexion->query($requete);
-        $ligne = $resultat->fetch();    
+        $resultat_location = $connexion->query($requete_location);
+        $ligne = $resultat_location->fetch();    
         echo "<img src='images/".$ligne["image"]."' >";
         echo "<h1>".$ligne["libelle"]."</h1>";
         echo "<p>Matricule: ".$ligne["immatriculation"]."</p>";
@@ -31,9 +31,10 @@
         echo "<p>Modele: ".$ligne["libelle"]."</p>";
         echo "<p>Compteur: ".$ligne["compteur"]." KM</p>";
         echo "<p>Marque: ".$ligne["nom_marque"]."</p>";
+        ?>
 
-        // input
-        echo '
+        <!-- inputs -->
+
         <label for="date_min" > Date début: </label>
         <input type="date" id="date_min" name="debut_location" required></input> 
         <br/><br/>
@@ -46,15 +47,32 @@
         <label for="compteur_fin" > Compteur fin (KM): </label>
         <input type="number" size="15" id="compteur_fin" name="compteur_fin" required></input>
         <br/><br/>
-        <button type="submit" value="'.$ligne["id_voiture"].'" name="id_voiture"> Réserver </button> ';
+        <!-- choix options -->
+        <label for="option">Choisisez les options qui vous conviennent:</label><br/><br/>
+        <select name="option" id="option" size="3" multiple>
 
-    }
-    catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage() . "<br/>";
-        die();
+        <?php
+            $requete_option = 'SELECT *
+                        FROM option';
+            $resultat_option = $connexion->query($requete_option);
+            while ($ligne_option = $resultat_option->fetch()){
+                echo "<option value='".$ligne_option["id_option"]."'>".$ligne_option["libelle"]."     ".$ligne_option["prix"]."$ </option>";
+            };    
+        ?>
+          
+        </select>
+        <br/><br/>
 
-    }
-    ?>
+        <?php
+           echo "<button type='submit' value='".$ligne["id_voiture"]."' name='id_voiture'> Réserver </button> ";
+        
+            }
+            catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage() . "<br/>";
+                die();
+
+            }
+        ?>
 
      
 

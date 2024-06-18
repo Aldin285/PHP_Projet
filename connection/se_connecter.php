@@ -4,7 +4,12 @@ session_start();
 // connexion à un compte:
 <!DOCTYPE html>
 <html>
-    <head><title>Connexion compte</title></head>
+    <head>
+        <title>Connexion compte</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
         <body>
             <form action="se_connecter2.php" method=get>
             <h2>CONNEXION</h2>

@@ -19,7 +19,7 @@
    <title>admin page</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style_log.css">
+   <link rel="stylesheet" href="style_log.css">
 
 </head>
 <body>

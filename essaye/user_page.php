@@ -19,7 +19,7 @@
    <title>user page</title>
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/style_log.css">
 
 </head>
 <body>

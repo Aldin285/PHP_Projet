@@ -114,7 +114,7 @@
                 echo "\t\t\t <p1>Modele: ".$ligne["libelle"]."</p1>";
                 echo "\t\t\t <p1>Compteur: ".$ligne["compteur"]." KM</p1>";
                 echo "\t\t\t <p1>Marque: ".$ligne["nom_marque"]."</p1>";
-                echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture'>Voir l'offre</button> </a>";
+                echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture'>Voir l'offre</button> ";
                 echo "\t\t  </div> \n\n";
             }
 

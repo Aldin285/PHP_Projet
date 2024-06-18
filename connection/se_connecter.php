@@ -14,6 +14,7 @@ session_start();
             <label for="password"><b>Mot de passe:</b></label>
             <input type="password" name="password" size="30" minlength='8'  placeholder="Veuillez saisir votre mot de passe " required /><br/><br />
 
+            <p> Nouveau client? Enregistrez-vous <a href="ajout_client.php">ici</a> </p> 
             <p><input type="submit" value = "Se connecter" />
             <input type="reset" value="Annuler" /></p>
             </form>

@@ -6,7 +6,7 @@
     <title>location</title>
 </head>
 <body>
-    <form action="" method="get">
+    <form action="voiture_reservation.php" method="get">
     <?php
 
     session_start();
@@ -21,6 +21,7 @@
                     JOIN marque ma ON m.id_marque = ma.id_marque
                     WHERE id_voiture='.$_GET["voiture"];
 
+        // info voiture
         $resultat = $connexion->query($requete);
         $ligne = $resultat->fetch();    
         echo "<img src='images/".$ligne["image"]."' >";
@@ -31,6 +32,22 @@
         echo "<p>Compteur: ".$ligne["compteur"]." KM</p>";
         echo "<p>Marque: ".$ligne["nom_marque"]."</p>";
 
+        // input
+        echo '
+        <label for="date_min" > Date début: </label>
+        <input type="date" id="date_min" name="debut_location" required></input> 
+        <br/><br/>
+        <label for="date_max" > Date fin: </label>
+        <input type="date"  id="date_max" name="fin_location" required></input> 
+        <br/><br/>
+        <label for="compteur_debut" > Compteur debut (KM): </label>
+        <input type="number"  id="compteur_debut" name="compteur_debut" required></input>
+        <br/><br/>
+        <label for="compteur_fin" > Compteur fin (KM): </label>
+        <input type="number" size="15" id="compteur_fin" name="compteur_fin" required></input>
+        <br/><br/>
+        <button type="submit" value="'.$ligne["id_voiture"].'" name="id_voiture"> Réserver </button> ';
+
     }
     catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage() . "<br/>";
@@ -39,19 +56,7 @@
     }
     ?>
 
-    <label for="date_min" > Date début: </label>
-    <input type='date' id="date_min" name="debut_location"></input> 
-    <br/><br/>
-    <label for="date_max" > Date fin: </label>
-    <input type='date'  id="date_max" name="fin_location"></input> 
-    <br/><br/>
-    <label for="compteur_debut" > Compteur debut (KM): </label>
-    <input type="number" value="0" id="compteur_debut" name="compteur_debut">
-    <br/><br/>
-    <label for="compteur_fin" > Compteur fin (KM): </label>
-    <input type="number" value="0" size="15" id="compteur_fin" name="compteur_fin">
-    <br/><br/>
-    <input type="submit" value="Réserver">   
+     
 
     <!-- script pour avoir la date actuelle et éviter que le client réserve les jours précédents -->
     <script>

@@ -8,7 +8,7 @@
     </head>
         <body>
             <form action="s'enregistré.php" method=get>
-            <h2>Saisie d'un client</h2>
+            <h3>Nouveau Utilisateur</h3>
             <label for="nom"><b>Nom:</b></label>
             <input type="text" name="nom" size="25" placeholder="Veuillez saisir votre nom" required /><br/><br/>
 

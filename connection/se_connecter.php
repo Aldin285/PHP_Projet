@@ -43,34 +43,27 @@ session_start();
 
     <div class="login-form-container">
 
-
-
-
-        <form method="POST" action="">
-
             <form action="se_connecter2.php" method=get>
 
                 <h3>User login</h3>
 
-                <input type="email" name="email" placeholder="email" class="box">
+                <input type="email" name="mail" placeholder="email" class="box" required>
                 <input type="password" name="password" size="30" minlength='8' placeholder="password" class="box" required>
 
-                <p>Forget your password <a href="#"> click here</a></p>
+                
                 <input type="submit" value="Login now" class="btn">
-                <p>or login with</p>
+                <!-- <p>or login with</p>
 
                 <div class="buttons">
 
                     <a href="#" class="btn">google</a>
                     <a href="#" class="btn">facebook</a>
 
-                </div>
+                </div> -->
 
-                <p>Don't have an account? <a href="#">create one</a></p>
+                <p>Nouveau Utilisateur? <a href="nouveau_user.php"> clicker ICI</a></p>
 
             </form>
-
-        </form>
 
     </div>
 

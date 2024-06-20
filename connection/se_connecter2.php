@@ -60,7 +60,7 @@
                     //test:
                     // echo 'Welcome back, ' .$nom.' '.$prenom.'!';
 
-                    header('Location: Accueil.html');
+                    header('Location: ../Accueil.html');
                 } else {
                     // Incorrect password
                     echo 'Incorrect  password!';

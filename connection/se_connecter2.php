@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head><title>Connexion</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style_connexion.css">
+
+</head>
+
+    
     <body>
+    <!-- header -->
+        <header class="header">
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a href="#" class="logo"> <span>Car</span>Go</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="voiture_choix.php">Vehicule</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div id="Login-btn">
+
+            <button class="btn">Profil</button>
+            <i class="far fa-user"></i>
+            
+        </div>
+        </header>
+
+
+        <!-- code PHP -->
         <?php
         session_start();
 
@@ -63,11 +99,26 @@
                     header('Location: ../Accueil.html');
                 } else {
                     // Incorrect password
-                    echo 'Incorrect  password!';
+                    echo '
+                    <div class="login-form-container"> 
+                        <form action="se_connecter.php">
+                        <h3>Mot de Passe incorrecte </h3>
+                        <br/><a href="se_connecter.php" > <input type="submit" value="Réessayez" class="btn"> </a>
+                        </form>
+                    </div>'
+                    ;
                 }
             } else {
                 // Incorrect mail
-                echo 'Incorrect mail!';
+                echo '
+                <div class="login-form-container"> 
+                        <form action="se_connecter.php">
+                        <h3>Adresse Mail incorrecte </h3>
+                        <br/><a href="se_connecter.php" > <input type="submit" value="Réessayez" class="btn"> </a>
+                        </form>
+                    </div>'
+                
+                ;
             }
 
             //Logout script

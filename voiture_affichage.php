@@ -16,7 +16,7 @@
        
         //j'ai utilisé id_modele dans deux sites différent
         // l'identifiant avait des noms différents. Pour utiliser la meme variable,
-        //j'ai utilisé isset() afin que la variable $modele prend le bon GET
+        //j'ai utilisé isset() afin que la variable $modele prennne le bon GET
         //en se basant sur le nom utilsé. (le site renvoie une erreur si le GET renvoie à rien)
         if ( isset($_GET['modele']) ) {
           $modele=$_GET["modele"];

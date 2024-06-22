@@ -170,23 +170,23 @@
             echo "Aucun résultat :(";
        }
 
-            // while ($ligne = $resultat->fetch()) {
+            while ($ligne = $resultat->fetch()) {
                 
-            //   echo "<div class='swiper-lider box'><br/>";    
-            //     echo "<img src='images/".$ligne["image"]."' alt=''><br/>";
-            //     echo "<div class='content'><br/>";
+              echo "<div class='swiper-lider box'><br/>";    
+                echo "<img src='images/".$ligne["image"]."' alt=''><br/>";
+                echo "<div class='content'><br/>";
 
-            //     echo " <h3>".$ligne["libelle"]."</h3><br/>";
-            //     echo " <div class='price'> <span> Prix: </span> ".$ligne["prix"]."€/jour</div><br/>";
-            //     echo "<p><br/>";
-            //     echo "<span class='fas fa-circle'>Categorie: </span>".$ligne["nom_categorie"]."<br/> ";
-            //     echo "<span class='fas fa-circle'>Marque: </span>".$ligne["nom_marque"]."<br/> ";
-            //     echo "<span class='fas fa-circle'>Compteur:</span>".$ligne["compteur"]."KM<br/> ";
-            //     echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture' class='btn'>Voir l'offre</button> </a>";
-            //     echo " </p><br/> ";
-            //     echo "</div><br/>";
-            //     echo "</div><br/>";
-            // }
+                echo " <h3>".$ligne["libelle"]."</h3><br/>";
+                echo " <div class='price'> <span> Prix: </span> ".$ligne["prix"]."€/jour</div><br/>";
+                echo "<p><br/>";
+                echo "<span class='fas fa-circle'>Categorie: </span>".$ligne["nom_categorie"]."<br/> ";
+                echo "<span class='fas fa-circle'>Marque: </span>".$ligne["nom_marque"]."<br/> ";
+                echo "<span class='fas fa-circle'>Compteur:</span>".$ligne["compteur"]."KM<br/> ";
+                echo " <button type='submit' value='".$ligne["id_voiture"]."' name='voiture' class='btn'>Voir l'offre</button> </a>";
+                echo " </p><br/> ";
+                echo "</div><br/>";
+                echo "</div><br/>";
+            }
 
         
         } 

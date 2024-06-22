@@ -102,7 +102,7 @@
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
-                        WHERE c.id_categorie="'.$_GET["categorie"].'"';
+                        WHERE reservation=0 AND c.id_categorie="'.$_GET["categorie"].'"';
             }
             //Affiche les voitures qui appartiennent à la marque séléctionée
             elseif (isset($_GET["categorie"],$_GET["marque"]) &&($_GET["marque"]!=="" && $_GET["categorie"]=="")){
@@ -120,7 +120,7 @@
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
-                        WHERE ma.id_marque='.$_GET["marque"].' AND c.id_categorie="'.$_GET["categorie"].'"';
+                        WHERE reservation=0 AND ma.id_marque='.$_GET["marque"].' AND c.id_categorie="'.$_GET["categorie"].'"';
             }
             //Affiche les voitures qui appartiennent au modele séléctioné
             elseif(isset($modele)){
@@ -129,7 +129,7 @@
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
-                        WHERE id_modele='.$modele;
+                        WHERE reservation=0 AND id_modele='.$modele;
             }
             //Affiche toutes les voitures quand aucune option est séléctionée
             else{

@@ -67,11 +67,12 @@ CREATE TABLE `Client` (
 
 LOCK TABLES `Client` WRITE;
 /*!40000 ALTER TABLE `Client` DISABLE KEYS */;
-INSERT INTO `Client` VALUES 
+INSERT INTO `Client` VALUES
 (1,'malkovitch','john','paradise street','john@gmail.com','1254',1),
 (2,'smith','bill','hell. city','Sbill@gmail.com','5454',2),
 (3,'murray','bill','les fleurs du mal','Mbill@gmail.com','5454',3),
-(4,'nature','gwendal','rennes','gwendal@gmail.com','5454',1);
+(4,'nature','gwendal','rennes','gwendal@gmail.com','5454',1),
+(5,'Louis','Bouhours','Rennes','lb@gmail.com','12345678',1);
 /*!40000 ALTER TABLE `Client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,6 +225,7 @@ CREATE TABLE `Voiture` (
   `immatriculation` varchar(50) NOT NULL,
   `compteur` int(11) NOT NULL,
   `id_modele` int(11) NOT NULL,
+  `reservation` BIT(1) not NULL,
   PRIMARY KEY (`id_voiture`),
   KEY `Voiture_Modele_FK` (`id_modele`),
   CONSTRAINT `Voiture_Modele_FK` FOREIGN KEY (`id_modele`) REFERENCES `Modele` (`id_modele`)
@@ -236,7 +238,38 @@ CREATE TABLE `Voiture` (
 
 LOCK TABLES `Voiture` WRITE;
 /*!40000 ALTER TABLE `Voiture` DISABLE KEYS */;
-INSERT INTO `Voiture` VALUES (1,'123 ABC 456',2055,1),(2,'215 QKX 284',27655,2),(3,'234 ATV 765',5789,3),(4,'238 SFG 387',19867,4),(5,'241 GST 356',21765,5),(6,'293 LXU 428',3682,6),(7,'349 DES 974',6548,7),(8,'426 DEH 935',12546,8),(9,'427 XHQ 765',23768,9),(10,'470 DKJ 639',28476,10),(11,'537 QSD 276',6548,11),(12,'542 SQU 387',128,12),(13,'543 KDE 735',43276,13),(14,'634 DJH 724',23102,14),(15,'654 HDY 528',8545,10),(16,'732 HFD 383',6543,14),(17,'734 SED 359',12345,7),(18,'744 HFS 296',44346,5),(19,'753 FSC 945',7654,19),(20,'753 SUR 871',21865,7),(21,'754 GYH 749',250,21),(22,'765 HDW 347',7534,22),(23,'765 KJH 364',7652,23),(24,'765 SRC 234',9864,24),(25,'853 DJY 284',76443,25),(26,'857 HDE 248',7538,26),(27,'863 NBS 738',28765,8),(28,'864 LQD 482',7646,19),(29,'865 KSC 912',27486,16),(30,'873 MHF 487',76534,15),(31,'934 KDS 452',12635,17),(32,'985 FSZ 238',8543,20);
+INSERT INTO `Voiture` VALUES (1,'123 ABC 456',2055,1,0),
+(2,'215 QKX 284',27655,2,0),
+(3,'234 ATV 765',5789,3,0),
+(4,'238 SFG 387',19867,4,0),
+(5,'241 GST 356',21765,5,0),
+(6,'293 LXU 428',3682,6,0),
+(7,'349 DES 974',6548,7,0),
+(8,'426 DEH 935',12546,8,0),
+(9,'427 XHQ 765',23768,9,0),
+(10,'470 DKJ 639',28476,10,0),
+(11,'537 QSD 276',6548,11,0),
+(12,'542 SQU 387',128,12,0),
+(13,'543 KDE 735',43276,13,0),
+(14,'634 DJH 724',23102,14,0),
+(15,'654 HDY 528',8545,10,0),
+(16,'732 HFD 383',6543,14,0),
+(17,'734 SED 359',12345,7,0),
+(18,'744 HFS 296',44346,5,0),
+(19,'753 FSC 945',7654,19,0),
+(20,'753 SUR 871',21865,7,0),
+(21,'754 GYH 749',250,21,0),
+(22,'765 HDW 347',7534,22,0),
+(23,'765 KJH 364',7652,23,0),
+(24,'765 SRC 234',9864,24,0),
+(25,'853 DJY 284',76443,25,0),
+(26,'857 HDE 248',7538,26,0),
+(27,'863 NBS 738',28765,8,0),
+(28,'864 LQD 482',7646,19,0),
+(29,'865 KSC 912',27486,16,0),
+(30,'873 MHF 487',76534,15,0),
+(31,'934 KDS 452',12635,17,0),
+(32,'985 FSZ 238',8543,20,0);
 /*!40000 ALTER TABLE `Voiture` ENABLE KEYS */;
 UNLOCK TABLES;
 

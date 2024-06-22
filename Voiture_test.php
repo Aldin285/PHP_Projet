@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarGo</title>
+    <title>Voitures Affichage</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -111,7 +111,7 @@
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
-                        WHERE ma.id_marque='.$_GET["marque"];
+                        WHERE ma.id_marque='.$_GET["marque"].' AND reservation=0';
             }
             //Affiche les voitures qui appartiennent à la marque et à la catégorie séléctionée
             elseif(isset($_GET["categorie"],$_GET["marque"]) && ($_GET["marque"]!=="" && $_GET["categorie"]!=="")){
@@ -138,6 +138,7 @@
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
+                        WHERE reservation=0
                         ORDER BY m.libelle';
                 }
            

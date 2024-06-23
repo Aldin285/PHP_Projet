@@ -3,8 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 #myInput {
@@ -42,15 +45,14 @@ a{
 
 #myTable tr.header, #myTable tr:hover {
   /* Add a grey background color to the table header and on hover */
-  background-color: #f1f1f1;
+  background-color: #f9d806;
 }
 </style>
 <title>Choix Modele</title>
 </head>
 <body>
 
-    <h2>My Phonebook</h2>
-    <input type='text' id='myInput' onkeyup='myFunction()' placeholder='recherche marque...' title='Marque'>
+    <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Rechereche modele' title='Marque'>
 
     <table id="myTable" >
 
@@ -72,7 +74,7 @@ a{
     
     while ($ligne = $resultat->fetch()){
     echo "<tr>";  
-        echo "<td><a href='voiture_affichage.php?id_modele=".$ligne["id_modele"]."'>".$ligne["libelle"]."</a></td>";
+        echo "<td><a href='Voiture_test.php?id_modele=".$ligne["id_modele"]."'>".$ligne["libelle"]."</a></td>";
         echo "<td>".$ligne["nom_categorie"]."</td>";
         echo "<td>".$ligne["nom_marque"]."</td>";
        echo "</tr>"; 

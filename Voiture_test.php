@@ -19,9 +19,9 @@
         <a href="#" class="logo"> <span>Car</span>Go</a>
 
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="voiture_choix.php">Vehicule</a>
-            <a href="#services">Services</a>
+        <a href="Accueil.php">Home</a>
+        <a href="Voiture_test.php">Vehicule</a>
+            <a href="choix_modele.php">Modeles</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -38,21 +38,40 @@
 
         <form action="">
 
-            <h3>User login</h3>
-
-            <input type="email" placeholder="email" class="box">
-            <input type="password" placeholder="password" class="box">
-            <p>Forget your password <a href="#"> click here</a></p>
-            <input type="submit" value="Login now" class="btn">
-            <p>or login with</p>
-
-            <div class="buttons">
-                <a href="#" class="btn">google</a>
-                <a href="#" class="btn">facebook</a>
-            </div>
-            <p>Don't have an account? <a href="#">create one</a></p>
+            <h3>Profil Info</h3>
+            <!-- code php pour afficher info user -->
+            <?php
+        session_start();
+        
+        try {
+            $connexion= new PDO('mysql:host=localhost;dbname=locautov2','root','',);
+            $requete = 'SELECT nom,prenom,adresse,adresse_mail,mot_de_pass
+                        FROM client
+                        WHERE id_client='.$_SESSION["id_client"] ;
+                        
+            $resultat = $connexion->query($requete);
+            $ligne= $resultat-> fetch();
             
-
+            
+            echo "<h4>Nom: </h4>
+             <p>".$ligne["nom"]." </p><br/><br/>";
+             echo "<h4>Prenom: </h4>
+             <p>".$ligne["prenom"]." </p><br/><br/>";
+             echo "<h4>Adresse: </h4>
+             <p>".$ligne["adresse"]." </p><br/><br/>";
+             echo "<h4>Adresse Mail: </h4>
+             <p>".$ligne["adresse_mail"]." </p><br/><br/>";
+            } 
+        catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage() . "<br/>";
+            die();
+        }
+        ?>
+           
+            <div class="buttons">
+                <a href="Modif_user.php" class="btn">Modifier</a>
+                <a href="user (Modif_Update)/logout.php" class="btn">Se Déconnecter</a>
+            </div>
         </form>
 
     </div>
@@ -71,7 +90,13 @@
 
         <selection class="vehicules" id="vehicules">
 
-            <h1 class="heading"> Popular <span> vehicules</span></h1>
+            <h1 class="heading"><?php
+                if(isset($_GET["reservation"])){
+                    echo "Vos <span> locations</span></h1>";
+                }else{
+                    echo "Popular <span> vehicules</span></h1>";
+                }
+            ?>
 
             <div class="swiper vehicules-slider">
 
@@ -97,7 +122,7 @@
 
             //Affiche les voitures qui appartiennent à la categorie séléctioné
             if (isset($_GET["categorie"],$_GET["marque"]) && ( $_GET["categorie"]!=="" && $_GET["marque"]=="")){
-                 $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
+                 $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture,prix
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -106,7 +131,7 @@
             }
             //Affiche les voitures qui appartiennent à la marque séléctionée
             elseif (isset($_GET["categorie"],$_GET["marque"]) &&($_GET["marque"]!=="" && $_GET["categorie"]=="")){
-                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture,prix
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie
@@ -124,7 +149,7 @@
             }
             //Affiche les voitures qui appartiennent au modele séléctioné
             elseif(isset($modele)){
-                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture,prix
                         FROM voiture AS v
                         NATURAL JOIN modele m
                         JOIN categorie c ON m.id_categorie = c.id_categorie

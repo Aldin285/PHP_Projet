@@ -4,28 +4,9 @@
         <title> Choix Marque Categorie </title>
     </head>
         <body>
+            <!-- debut code choix marque categorie -->
         <form action="voiture_affichage.php" method="get">
-        <!-- barre étendue des modeles -->
-        <!-- <label for="modele-select">choix modele:</label>
-        <select name="modele" size="1" id="modele-select">
-        < php
-            try {
-                $connexion = new PDO('mysql:host=localhost;dbname=locautoV2',
-                'root', '');
-                $requete = 'SELECT * FROM modele';
-                $resultat = $connexion->query($requete);
-                while ($ligne = $resultat->fetch()) {
-                    echo "\t\t<option value ='" . $ligne["id_modele"] . "'>"
-                    . $ligne["libelle"] . "</option>\n";
-                    }
-                }
-                catch (PDOException $e) {
-                echo "Erreur : " . $e->getMessage() . "<br/>";
-                die();
-            }
-        ?>
-        </select>   -->
-
+    
             <!-- barre étendue des marques  -->
         <label for="marque-select">choix marque:</label>
         <select name="marque" size="1" id="marque-select">
@@ -71,12 +52,13 @@
         </select>
 
 
-        <!-- Validation -->
+        <!-- Validation choix marque categorie-->
         <br/><br/>
         <a href="voiture_affichage.php" >
         <input type="submit" value="Valider"/>
         </a>
         
         </form>
+        <!-- fin code choix marque categorie -->
     </body>
 </html>

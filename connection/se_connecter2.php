@@ -96,7 +96,7 @@
                     //test:
                     // echo 'Welcome back, ' .$nom.' '.$prenom.'!';
 
-                    header('Location: ../Accueil.html');
+                    header('Location: ../Accueil.php');
                 } else {
                     // Incorrect password
                     echo '

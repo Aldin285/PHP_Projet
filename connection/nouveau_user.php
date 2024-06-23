@@ -45,7 +45,7 @@ session_start();
             <form action="s'enregistré.php" method=get>
 
             <h3>Nouveau Utilisateur</h3>
-            <label for="nom"><b>Nom:</b></label>
+            <h4>Nom: </h4>
             <input type="text" name="nom" size="25" placeholder="Veuillez saisir votre nom" class="box" required /><br/><br/>
 
             <label for="prenom"><b>Prenom :</b></label>
@@ -55,7 +55,7 @@ session_start();
             <input type="text" name="adresse" size="35" placeholder="Veuillez saisir votre adresse" class="box" required /><br/><br />
 
             <label for="mail"><b>Adresse mail:</b></label>
-            <input type="text" name="mail" size="30" placeholder="Veuillez saisir votre adresse mail " class="box" required /><br/><br />
+            <input type="email" name="mail" size="30" placeholder="Veuillez saisir votre adresse mail " class="box" required /><br/><br />
 
             <label for="password"><b>Mot de passe:</b></label>
             <input type="password" name="password" size="30" minlength='8'  placeholder="Veuillez saisir votre mot de passe " class="box" required /><br/><br />

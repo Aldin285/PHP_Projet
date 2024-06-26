@@ -20,7 +20,7 @@
 
         <nav class="navbar">
         <a href="Accueil.php">Home</a>
-        <a href="Voiture_test.php">Vehicule</a>
+        <a href="Voiture_test.php">Vehicules</a>
             <a href="choix_modele.php">Modeles</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -31,6 +31,8 @@
         </div>
 
     </header>
+
+    
 
     <div class="login-form-container">
 
@@ -76,13 +78,68 @@
 
     </div>
 
-    <!--home section -->
+    <!--Marque/categorie choix -->
  <!-- ne pas commenter cette section sinon on ne peut pas défiler la page -->
+
+
     <section class="home" id="home">
-        <!-- <h1 class="home-parallax" data-speed="-2"> Find your car</h1>
-        <img class="home-parallax" data-speed="5" src="images/home2.png" alt="">
-        <a href="#" class="btn home-parallax" data-speed="7"> Explore cars</a> -->
+          <form action="Voiture_test.php" method="get">
+    
+            <!-- barre étendue des marques  -->
+        <label for="marque-select">choix marque:</label>
+        <select name="marque" size="1" id="marque-select">
+        <option value="">--select--</option>
+        <?php
+            try {
+                $connexion = new PDO('mysql:host=localhost;dbname=locautoV2',
+                'root', '');
+                $requete = 'SELECT * FROM marque';
+                $resultat = $connexion->query($requete);
+                while ($ligne = $resultat->fetch()) {
+                    echo "\t\t<option value ='" . $ligne["id_marque"] . "'>"
+                    . $ligne["libelle"] . "</option>\n";
+                    }
+                }
+                catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage() . "<br/>";
+                die();
+            }
+        ?>
+        </select>
+
+            <!-- barre étendue des categories -->
+        <label for="categorie-select">choix categorie:</label>
+        <select name="categorie" size="1" id="categorie-select">
+        <option value="">--select--</option>
+        <?php
+            try {
+                $connexion = new PDO('mysql:host=localhost;dbname=locautoV2',
+                'root', '');
+                $requete = 'SELECT * FROM categorie';
+                $resultat = $connexion->query($requete);
+                while ($ligne = $resultat->fetch()) {
+                    echo "\t\t<option value ='" . $ligne["id_categorie"] . "'>"
+                    . $ligne["libelle"] . "</option>\n";
+                    }
+                }
+                catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage() . "<br/>";
+                die();
+            }
+        ?>
+        </select>
+
+
+        <!-- Validation choix marque categorie-->
+        <br/><br/>
+        <a href="Voiture_test.php" >
+        <input type="submit" value="Valider"/>
+        </a>
+        
+        </form>
     </section>
+
+
 
     <!--icons selectio-->
    
@@ -91,8 +148,8 @@
         <selection class="vehicules" id="vehicules">
 
             <h1 class="heading"><?php
-                if(isset($_GET["reservation"])){
-                    echo "Vos <span> locations</span></h1>";
+                if(isset($_GET["id_loueur"])){
+                    echo "Vos <span> réservation</span></h1>";
                 }else{
                     echo "Popular <span> vehicules</span></h1>";
                 }
@@ -155,6 +212,17 @@
                         JOIN categorie c ON m.id_categorie = c.id_categorie
                         JOIN marque ma ON m.id_marque = ma.id_marque
                         WHERE reservation=0 AND id_modele='.$modele;
+            }
+            // affiche les voitures réservée
+            elseif(isset($_GET["id_loueur"])){
+                $requete = 'SELECT image,m.libelle ,immatriculation,compteur, ma.libelle as nom_marque,c.libelle as nom_categorie,id_voiture,prix
+                       FROM
+                        location l NATURAL JOIN client
+                        NATURAL JOIN voiture v
+                        NATURAL JOIN modele m
+                        NATURAL JOIN categorie c
+                        NATURAL JOIN marque ma
+                        WHERE reservation=1 AND l.id_client='.$_SESSION["id_client"];
             }
             //Affiche toutes les voitures quand aucune option est séléctionée
             else{

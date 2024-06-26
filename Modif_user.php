@@ -39,25 +39,40 @@ session_start();
     </header>
     
         <!-- connexion -->
+        <!-- code php pour avoir les données du user -->
+
+        <?php
+        session_start();
+        
+        try {
+            $connexion= new PDO('mysql:host=localhost;dbname=locautov2','root','',);
+            $requete = 'SELECT nom,prenom,adresse,adresse_mail,mot_de_pass
+                        FROM client
+                        WHERE id_client='.$_SESSION["id_client"] ;
+                        
+            $resultat = $connexion->query($requete);
+            $ligne= $resultat-> fetch();
+            ?>
+          
 
     <div class="login-form-container">
             <form action="Update_user.php" method=get>
 
             <h3>Modifier</h3>
             <h4>Nom: </h4>
-            <input type="text" name="nom_user_modif" size="25"  class="box" required value= <?php echo ''.$_SESSION['nom_client'].''?> ><br/><br/>
+            <input type="text" name="nom_user_modif" size="25"  class="box" required value= <?php echo ''.$ligne["nom"].''?> ><br/><br/>
 
             <h4>Prenom: </h4>
-            <input type="text" name="prenom_user_modif" size="25"  class="box" required value= <?php  echo ''.$_SESSION['prenom_client'].''?> ><br/><br/>
+            <input type="text" name="prenom_user_modif" size="25"  class="box" required value= <?php  echo ''.$ligne["prenom"].''?> ><br/><br/>
 
             <h4>Adresse: </h4>
-            <input type="text" name="adresse_user_modif" size="35"  class="box" required value= <?php  echo ''.$_SESSION['adresse_client'].''?> ><br/><br/>
+            <input type="text" name="adresse_user_modif" size="35"  class="box" required value= <?php  echo ''.$ligne["adresse"].''?> ><br/><br/>
 
             <h4>Adresse Mail: </h4>
-            <input type="text" name="mail_user_modif" size="30"  class="box" required value= <?php  echo ''.$_SESSION['mail'].''?> ><br/><br/>
+            <input type="text" name="mail_user_modif" size="30"  class="box" required value= <?php  echo ''.$ligne["adresse_mail"].''?> ><br/><br/>
 
             <h4>Nouveau Mot de Passe: </h4>
-            <input type="text" name="password_user_modif" size="30" minlength="8" class="box" required >
+            <input type="text" name="password_user_modif" size="30" minlength="8" class="box" required value= <?php  echo ''.$ligne["mot_de_pass"].''?> >
             
 
             <input type="submit" value="Valider" class="btn">
@@ -66,6 +81,13 @@ session_start();
             </a><br/><br/>
             </form>
 
+            <?php
+            } 
+        catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage() . "<br/>";
+            die();
+        }
+        ?>
 
     </div>
 

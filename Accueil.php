@@ -20,16 +20,17 @@
 
         <nav class="navbar">
             <a href="Accueil.php">Home</a>
-            <a href="Voiture_test.php">Vehicule</a>
+            <a href="Voiture_test.php">Vehicules</a>
             <a href="choix_modele.php">Modeles</a>
             <a href="#contact">Contact</a>
         </nav>
 
         <div id="Login-btn">
             <button class="btn">Profil</button>
+           
             <i class="far fa-user"></i>
         </div>
-
+        <form action='Voiture_test.php' methode='get'><button type='submit' class='btn' name='id_loueur' value="'.<?php session_start(); echo $_SESSION['id_client'] ;?>.'" >Mes réservations</button></form>
     </header>
 
     <div class="login-form-container">
@@ -69,8 +70,9 @@
         ?>
            
             <div class="buttons">
-                <a href="Modif_user.php" class="btn">Modifier</a>
-                <a href="user (Modif_Update)/logout.php" class="btn">Se Déconnecter</a>
+                <a href="Modif_user.php" class="btn">Modifier le profil</a>
+                <a href="user (Modif_Update)/logout.php" class="btn">Se Déconnecter</a><br/>
+                
             </div>
         </form>
 
@@ -82,6 +84,57 @@
         <h1 class="home-parallax" data-speed="-2"> Find your car</h1>
         <img class="home-parallax" data-speed="5" src="images/home2.png" alt="">
         <a href="Voiture_test.php" class="btn home-parallax" data-speed="7"> Explore cars</a>
+
+
+
+    </section>
+
+    <!--icons selectio-->
+    <section class="icons-container">
+
+        <div class="icons">
+
+            <i class="fas fa-home"></i>
+
+            <div class="content">
+                <h3>150+</h3>
+                <p>Branches</p>
+            </div>
+
+        </div>
+
+        <div class="icons">
+
+            <i class="fas fa-car"></i>
+
+            <div class="content">
+                <h3>4470+</h3>
+                <p>Cars sold</p>
+            </div>
+
+        </div>
+
+        <div class="icons">
+
+            <i class="fas fa-users"></i>
+
+            <div class="content">
+                <h3>590+</h3>
+                <p>Happy clients</p>
+            </div>
+
+        </div>
+
+        <div class="icons">
+
+            <i class="fas fa-car"></i>
+
+            <div class="content">
+                <h3>890+</h3>
+                <p>New cars</p>
+            </div>
+
+        </div>
 
 
 

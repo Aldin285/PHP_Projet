@@ -42,7 +42,7 @@
             <h3>Profil Info</h3>
             <!-- code php pour afficher info user -->
             <?php
-        session_start();
+        
         
         try {
             $connexion= new PDO('mysql:host=localhost;dbname=locautov2','root','',);

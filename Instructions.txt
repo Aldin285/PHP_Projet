@@ -1,0 +1,1 @@
+Je vous conseille d'ouvrir le fichier "se_connecter.php" dans le document "connection" dans votre navigateur après avoir activé Apache et MySQL sur Xampp en saisissant 'lb@gmail.com'en tant que compte et '12345678' en tant que mot de passe
